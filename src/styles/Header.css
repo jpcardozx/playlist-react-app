@@ -1,0 +1,101 @@
+/* Estilização para a navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Distribuir elementos entre logo, links e botão */
+  align-items: center;
+  padding: 15px 30px; /* Ajuste de padding */
+  background-color: var(--primary-color); /* Variável para cor primária */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para profundidade */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease; /* Suave transição ao mudar de cor */
+}
+
+/* Logo à esquerda */
+.logo-container {
+  flex-shrink: 0; /* Impede que a logo encolha */
+  margin-right: 15px; /* Espaçamento entre logo e links */
+}
+
+.logo {
+  height: 40px;
+  width: 40px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1); /* Aumento suave no hover */
+}
+
+/* Links centralizados */
+.nav-links {
+  display: flex;
+  list-style-type: none; /* Remover marcadores de lista */
+  flex-grow: 1; /* Garantir que os links cresçam para ocupar espaço central */
+  justify-content: center; /* Centralizar os links */
+  gap: 25px; /* Espaçamento entre links */
+  text-align: center;
+}
+
+.nav-links li a {
+  color: white; /* Cor dos links */
+  text-decoration: none; /* Remover sublinhado */
+  font-weight: bold;
+  font-size: 1rem; /* Tamanho da fonte ajustado */
+  padding: 8px 12px; /* Espaçamento interno dos links */
+  transition: color 0.3s ease, border-bottom 0.3s ease; /* Transições suaves */
+}
+
+.nav-links li a:hover {
+  color: var(--secondary-color); /* Cor de hover definida pela variável */
+  border-bottom: 2px solid var(--secondary-color); /* Sublinhar no hover */
+}
+
+.active {
+  color: var(--secondary-color); /* Cor do link ativo */
+  border-bottom: 2px solid var(--secondary-color); /* Sublinhar no estado ativo */
+}
+
+/* Botão à direita */
+.button-container {
+  flex-shrink: 0; /* Evitar que o botão cresça demais */
+  margin-left: 15px; /* Espaçamento à esquerda do botão */
+}
+
+.custom-button {
+  padding: 10px 20px;
+  background-color: var(--secondary-color); /* Cor do botão */
+  color: var(--primary-color); /* Cor do texto do botão */
+  border: none;
+  border-radius: 30px; /* Borda arredondada */
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.custom-button:hover {
+  background-color: #f2c94c; /* Cor do botão no hover */
+  transform: scale(1.05); /* Leve aumento no hover */
+}
+
+/* Ajustes de responsividade */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 20px;
+    flex-direction: column; /* Colocar elementos em coluna em telas menores */
+    align-items: flex-start; /* Alinhar elementos à esquerda em telas pequenas */
+  }
+
+  .nav-links {
+    flex-direction: column; /* Links em coluna */
+    gap: 15px;
+  }
+
+  .custom-button {
+    width: 100%; /* Botão ocupa 100% da largura em telas pequenas */
+    margin-top: 10px;
+  }
+}

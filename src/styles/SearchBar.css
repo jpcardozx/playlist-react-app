@@ -1,0 +1,112 @@
+/* Full-screen container with background image */
+.search-bar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-image: url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  text-align: center;
+}
+
+/* Dark overlay for better contrast with the search bar */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  z-index: 1;
+}
+
+/* Title design */
+h1 {
+  font-size: 3.5rem;
+  color: #ffffff;
+  z-index: 2; /* Ensure it’s above the overlay */
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 800;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Search bar container */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 700px;
+  z-index: 2; /* Ensure it’s above the overlay */
+  background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+  padding: 20px;
+  border-radius: 50px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); /* Larger shadow for a lifted effect */
+}
+
+/* Input field design */
+.search-bar input {
+  width: 100%;
+  padding: 15px 25px;
+  border-radius: 50px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.8); /* Light semi-transparent background */
+  color: #000;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2); /* Slight inner shadow */
+}
+
+.search-bar input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 1); /* More opaque on focus */
+  transform: scale(1.05); /* Slight scale on focus */
+}
+
+/* Button design */
+.search-bar button {
+  padding: 15px 30px;
+  background-color: #7f2f0a;
+  font-weight: 700;
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.search-bar button:hover {
+  background-color: #5f2a05;
+  transform: scale(1.1); /* Slight scale on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.search-bar button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/* Adjustments for mobile screens */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .search-bar {
+    padding: 15px;
+  }
+
+  .search-bar input, .search-bar button {
+    font-size: 1rem;
+    padding: 12px 20px;
+  }
+}
