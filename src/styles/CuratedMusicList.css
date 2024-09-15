@@ -1,0 +1,102 @@
+/* Estrutura principal da página */
+.curated-music-list {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 40px;
+    background-color: #111; /* Fundo moderno e escuro */
+    color: #f5f5f5; /* Texto claro para contraste */
+    margin-top: 88px;
+  }
+  
+  /* Box para cada curador */
+  .curation-box {
+    width: 48%;
+    background: linear-gradient(145deg, #222, #333);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  /* Efeito de hover para as boxes */
+  .curation-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Informações do curador */
+  .curator-info {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .curator-photo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Efeito de hover nas fotos */
+  .curator-photo:hover {
+    transform: scale(1.05);
+  }
+  
+  .curator-details h3 {
+    font-size: 1.7rem;
+    color: #ff4d4d; /* Cor destaque para o nome */
+    margin: 10px 0 5px;
+  }
+  
+  .curator-details p {
+    font-size: 1.1rem;
+    color: #bbb;
+  }
+  
+  /* Lista de faixas */
+  .track-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  /* Efeito de hover nos iframes */
+  .track-list iframe {
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .track-list iframe:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Estilo responsivo */
+  @media (max-width: 768px) {
+    .curated-music-list {
+      flex-direction: column;
+    }
+  
+    .curation-box {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+  
+    .curator-photo {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .curator-details h3 {
+      font-size: 1.5rem;
+    }
+  }
+  

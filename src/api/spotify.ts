@@ -64,3 +64,27 @@ export const searchPlaylists = async (
     return [];
   }
 };
+
+// Interface para a resposta da faixa da API do Spotify
+interface SpotifyTrack {
+  id: string;
+  name: string;
+  artists: { name: string }[];
+  preview_url: string;
+}
+
+// Função para buscar informações específicas de uma faixa pelo ID
+export const fetchTrack = async (trackId: string, token: string) => {
+  try {
+    const response = await axios.get<SpotifyTrack>(`https://api.spotify.com/v1/tracks/${trackId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data; // Retorna os dados da faixa, incluindo o preview_url
+  } catch (error) {
+    console.error('Error fetching track:', error);
+    return null;
+  }
+};

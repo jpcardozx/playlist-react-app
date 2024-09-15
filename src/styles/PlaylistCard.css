@@ -1,5 +1,16 @@
+.playlist-info {
+  width: 100%; /* Garante que a largura do elemento respeite o container pai */
+  padding: 10px 0;
+  box-sizing: border-box; /* Inclui padding no cálculo da largura total */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Evita que o conteúdo estoure do container */
+}
+
 .playlist-card {
-  background-color: #1c1c1c;
+  background-color: #232422;
   padding: 1.5rem;
   border-radius: 20px;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -7,7 +18,7 @@
   max-width: 100%;
   text-align: center;
   cursor: pointer;
-  overflow: hidden;
+  overflow: hidden; /* Garante que o card não tenha overflow de conteúdo */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -27,7 +38,7 @@
 
 .playlist-card h3 {
   margin-top: 20px;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: #fff;
   font-weight: 700;
   text-align: center;
@@ -45,7 +56,6 @@
   line-height: 1.4;
   padding: 0 1rem;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -57,7 +67,7 @@
 }
 
 .button-group {
-  margin-top: 20px;
+  margin-top: 15px;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -65,7 +75,7 @@
 }
 
 .playlist-card button {
-  padding: 10px;
+  padding: 10px 20px;
   background-color: #633408;
   border: none;
   color: white;
@@ -79,11 +89,10 @@
 
 .playlist-card button:hover {
   background-color: #f2994a;
-  transform: scale(1.05);
 }
 
 .spotify-button {
-  padding: 10px;
+  padding: 10px 20px;
   background-color: #1DB954;
   border: none;
   color: white;
@@ -99,7 +108,6 @@
 
 .spotify-button:hover {
   background-color: #17a746;
-  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {

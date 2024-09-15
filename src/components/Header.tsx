@@ -8,11 +8,14 @@ const Header: React.FC = () => {
       <nav className="navbar">
         {/* Logo à esquerda */}
         <div className="logo-container">
-          <img
-            src="https://img.icons8.com/color-glass/48/apple-music.png"
-            alt="Logo"
-            className="logo"
-          />
+          <NavLink to="/">
+            <img
+              src="https://img.icons8.com/color-glass/48/apple-music.png"
+              alt="Logo"
+              className="logo"
+              aria-label="Home"
+            />
+          </NavLink>
         </div>
 
         {/* Links centralizados */}
@@ -32,7 +35,16 @@ const Header: React.FC = () => {
               className={({ isActive }) => (isActive ? 'active' : '')}
               aria-current="page"
             >
-              Buscar Música
+              Search
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/curated-music"
+              className={({ isActive }) => (isActive ? 'active' : '')}
+              aria-current="page"
+            >
+              Curated Music
             </NavLink>
           </li>
         </ul>
@@ -40,7 +52,7 @@ const Header: React.FC = () => {
         {/* Botão para acessar favoritos */}
         <div className="button-container">
           <NavLink to="/favorites">
-            <button className="custom-button">Favorite Playlists</button>
+            <button className="custom-button" aria-label="My Favorites">My Favs</button>
           </NavLink>
         </div>
       </nav>

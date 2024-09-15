@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import Playlists from './components/Playlists';
-import Favorites from './components/Favorites'; // Importe o novo componente de favoritos
+import Favorites from './components/Favorites';
+import CuratedMusicList from './components/CuratedMusicList'; // Adicionar o novo componente
 import { getToken, searchPlaylists } from './api/spotify';
 import './App.css';
 
@@ -24,48 +25,104 @@ const App: React.FC = () => {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState<string>('');
 
+  // Fetch playlists from Spotify API using query and token
   const handleSearch = async (query: string, page = 1) => {
     if (!token) {
-      console.error('Token não encontrado');
+      console.error('Token not found');
       return;
     }
 
-    setLoading(true);
-    setError(null);
-    const results = await searchPlaylists(query, token, page);
-    setPlaylists(results);
-    setLoading(false);
+    // Prevent empty search queries
+    if (!query.trim()) {
+      setError('Search query is empty.');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError(null); // Reset previous errors
+
+      const results = await searchPlaylists(query, token, page);
+      setPlaylists(results);
+    } catch (err) {
+      setError('Error fetching playlists.');
+      console.error('Search error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
+  // Fetch token and load favorites from localStorage
   useEffect(() => {
     const fetchToken = async () => {
-      const accessToken = await getToken();
-      if (accessToken) {
-        setToken(accessToken);
-      } else {
-        setError('Erro ao obter o token de autenticação.');
+      try {
+        const accessToken = await getToken();
+        if (accessToken) {
+          setToken(accessToken);
+        } else {
+          setError('Error fetching authentication token.');
+        }
+      } catch (err) {
+        setError('Authentication error.');
+        console.error('Error fetching token:', err);
       }
     };
 
     fetchToken();
 
-    // Carregar favoritos do localStorage
+    // Load favorites from localStorage if available
     const storedFavorites = localStorage.getItem('favorites');
     if (storedFavorites) {
       setFavorites(JSON.parse(storedFavorites));
     }
   }, []);
 
+  // Toggle favorite playlists
   const toggleFavorite = (playlist: Playlist) => {
     let updatedFavorites;
+
     if (favorites.some(fav => fav.id === playlist.id)) {
       updatedFavorites = favorites.filter(fav => fav.id !== playlist.id);
     } else {
       updatedFavorites = [...favorites, playlist];
     }
+
     setFavorites(updatedFavorites);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
+
+  // Pagination component for navigating through search results
+  const Pagination = () => (
+    <div className="pagination">
+      <button 
+        onClick={() => { handleSearch(query, page - 1); setPage(page - 1); }} 
+        disabled={page === 1}
+      >
+        Previous Page
+      </button>
+      <button onClick={() => { handleSearch(query, page + 1); setPage(page + 1); }}>
+        Next Page
+      </button>
+    </div>
+  );
+
+  // Render search results or display loading and error states
+  const renderResults = () => (
+    <>
+      {loading && <div className="spinner-container"><div className="spinner"></div></div>}
+      {error && <p>{error}</p>}
+      {!loading && playlists.length > 0 && (
+        <>
+          <Playlists
+            playlists={playlists}
+            favorites={favorites}
+            toggleFavorite={toggleFavorite}
+          />
+          <Pagination />
+        </>
+      )}
+    </>
+  );
 
   return (
     <Router>
@@ -77,25 +134,7 @@ const App: React.FC = () => {
             element={
               <>
                 <SearchBar onSearch={(query) => { setQuery(query); handleSearch(query); }} />
-                {loading && <div className="spinner-container"><div className="spinner"></div></div>}
-                {error && <p>{error}</p>}
-                {!loading && playlists.length > 0 && (
-                  <>
-                    <Playlists
-                      playlists={playlists}
-                      favorites={favorites}
-                      toggleFavorite={toggleFavorite}
-                    />
-                    <div className="pagination">
-                      <button onClick={() => { handleSearch(query, page - 1); setPage(page - 1); }} disabled={page === 1}>
-                        Last Page
-                      </button>
-                      <button onClick={() => { handleSearch(query, page + 1); setPage(page + 1); }}>
-                        Next Page
-                      </button>
-                    </div>
-                  </>
-                )}
+                {renderResults()}
               </>
             }
           />
@@ -105,12 +144,21 @@ const App: React.FC = () => {
           />
           <Route
             path="/search"
-            element={<SearchBar onSearch={(query) => handleSearch(query)} />}
+            element={
+              <>
+                <SearchBar onSearch={(query) => { setQuery(query); handleSearch(query); }} />
+                {renderResults()}
+              </>
+            }
           />
-          {/* Nova rota para favoritos */}
           <Route
             path="/favorites"
             element={<Favorites favorites={favorites} toggleFavorite={toggleFavorite} />}
+          />
+          {/* Nova rota para a página de curadoria de músicas */}
+          <Route
+            path="/curated-music"
+            element={<CuratedMusicList />}
           />
         </Routes>
       </div>
