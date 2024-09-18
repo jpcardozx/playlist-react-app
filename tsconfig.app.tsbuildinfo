@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/api/spotify.ts","./src/components/CuratedMusicList.tsx","./src/components/Favorites.tsx","./src/components/Header.tsx","./src/components/Home.tsx","./src/components/PlaylistCard.tsx","./src/components/Playlists.tsx","./src/components/SearchBar.tsx"],"version":"5.6.2"}

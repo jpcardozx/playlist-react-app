@@ -26,13 +26,14 @@
 
 /* Title design */
 h1 {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   color: #ffffff;
   z-index: 2; /* Ensure it’s above the overlay */
   margin-bottom: 2rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-weight: 800;
+  font-weight: 700;
+  font-style: italic;
   text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
 }
 

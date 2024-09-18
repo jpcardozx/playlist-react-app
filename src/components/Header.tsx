@@ -10,7 +10,7 @@ const Header: React.FC = () => {
         <div className="logo-container">
           <NavLink to="/">
             <img
-              src="https://img.icons8.com/color-glass/48/apple-music.png"
+              src="https://github.com/jpcardozx/react-portfolio-app/blob/main/src/assets/white-logo.png?raw=true"
               alt="Logo"
               className="logo"
               aria-label="Home"

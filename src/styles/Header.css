@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between; /* Distribuir elementos entre logo, links e botão */
   align-items: center;
-  padding: 15px 30px; /* Ajuste de padding */
+  padding: 20px 40px; /* Ajuste de padding */
   background-color: var(--primary-color); /* Variável para cor primária */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para profundidade */
   position: fixed;
@@ -20,8 +20,8 @@
 }
 
 .logo {
-  height: 40px;
-  width: 40px;
+  height: auto;
+  width: 200px;
   transition: transform 0.3s ease;
 }
 
@@ -43,14 +43,16 @@
   color: white; /* Cor dos links */
   text-decoration: none; /* Remover sublinhado */
   font-weight: bold;
-  font-size: 1rem; /* Tamanho da fonte ajustado */
+  font-size: 0.9rem; /* Tamanho da fonte ajustado */
   padding: 8px 12px; /* Espaçamento interno dos links */
   transition: color 0.3s ease, border-bottom 0.3s ease; /* Transições suaves */
+  font-weight: 600;
 }
 
 .nav-links li a:hover {
   color: var(--secondary-color); /* Cor de hover definida pela variável */
   border-bottom: 2px solid var(--secondary-color); /* Sublinhar no hover */
+  scale: 1.1;
 }
 
 .active {
